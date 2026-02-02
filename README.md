@@ -9,25 +9,32 @@ This setup runs n8n and Tailscale using Docker Compose, automatically exposing n
     - Generate a **Reusable** key.
     - Add the tag `tag:container` (optional but recommended).
 
-## Setup
+## Workflow / Cara Pakai
 
-1.  **Configure Environment**:
-    - Copy the example environment file:
-      ```bash
-      cp .env.example .env
-      ```
-    - Edit `.env` and paste your `TS_AUTHKEY`.
+### 1. Pertama Kali (Fresh Install / Habis Clone)
+Saat pertama kali download/clone repository ini, Docker container belum ada. Lakukan ini:
 
-2.  **Start and Configure**:
-    - Run the start script:
-      ```bash
-      chmod +x start.sh
-      ./start.sh
-      ```
-    - This script will:
-      - Start the containers (n8n and tailscale).
-      - Automatically configure `tailscale serve` and `funnel`.
-      - Show you the status and URL.
+1.  **Buat file `.env`**:
+    Copy file example dan isi dengan Auth Key Tailscale Anda.
+    ```bash
+    cp .env.example .env
+    # Edit file .env dan masukkan TS_AUTHKEY
+    ```
+2.  **Jalankan Script**:
+    ```bash
+    ./start.sh
+    ```
+    *Script ini akan otomatis download image, buat container, login tailscale, dan aktifkan funnel.*
+
+### 2. Setelah Restart Komputer
+Setelah restart, Docker biasanya akan otomatis menjalankan container (karena setting `restart: always`).
+Namun, untuk memastikan Tailscale Funnel aktif kembali dengan benar, **cukup jalankan script yang sama lagi**:
+
+```bash
+./start.sh
+```
+
+*Script ini aman dijalankan berulang kali. Dia akan memastikan container nyala dan config funnel terpasang.*
 
 ## Accessing n8n
 

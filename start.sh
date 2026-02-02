@@ -16,8 +16,7 @@ sleep 10
 
 echo "Configuring Tailscale Funnel..."
 # Ensure the serve config is active
-docker compose exec tailscale tailscale serve --https=443 http://127.0.0.1:5678
-docker compose exec tailscale tailscale funnel 443 on
+docker compose exec tailscale tailscale funnel --bg http://127.0.0.1:5678
 
 echo "---------------------------------------------------"
 echo "Setup Complete!"
