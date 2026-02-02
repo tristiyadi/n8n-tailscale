@@ -8,6 +8,14 @@ This setup runs n8n and Tailscale using Docker Compose, automatically exposing n
     - Go to [Tailscale Keys](https://login.tailscale.com/admin/settings/keys).
     - Generate a **Reusable** key.
     - Add the tag `tag:container` (optional but recommended).
+    
+2.  **Settings Dns And Generate Auth Key**
+    https://login.tailscale.com/admin/dns
+      - Setting DNS
+        - MagicDNS -> Enable
+        - HTTPS Certificate -> Enable
+    https://login.tailscale.com/admin/settings/keys
+      - Generate Auth keys
 
 ## Workflow / Cara Pakai
 
@@ -20,7 +28,9 @@ Saat pertama kali download/clone repository ini, Docker container belum ada. Lak
     cp .env.example .env
     # Edit file .env dan masukkan TS_AUTHKEY
     ```
-2.  **Jalankan Script**:
+2. **Generate N8N Keys**
+  - N8N_ENCRYPTION_KEY bisa generate key nya disini https://www.strongdm.com/tools/api-key-generator
+3.  **Jalankan Script**:
     ```bash
     ./start.sh
     ```
@@ -38,7 +48,7 @@ Namun, untuk memastikan Tailscale Funnel aktif kembali dengan benar, **cukup jal
 
 ## Accessing n8n
 
-After the script finishes, you can access n8n at:
+After the script finishes and Funnel on and, you can access n8n at:
 `https://n8n-server.<your-tailnet>.ts.net`
 
 ## Troubleshooting
